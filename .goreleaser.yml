@@ -1,0 +1,129 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+    - ./hack/make/completions
+builds:
+  - id: darwin
+    main: ./cmd/demangle
+    binary: demangle
+    env:
+      - CGO_ENABLED=1
+    goos:
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+  - id: ios
+    main: ./cmd/demangle
+    binary: demangle
+    env:
+      - CGO_ENABLED=1
+      - CC=$GOROOT/misc/ios/clangwrap.sh
+    goos:
+      - ios
+    goarch:
+      - arm64
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    flags:
+      - -trimpath
+    hooks:
+      post: ./hack/make/codesign {{ .Path }}
+  # - id: linux
+  #   main: ./cmd/demangle
+  #   binary: demangle
+  #   env:
+  #     - CGO_ENABLED=1
+  #   goos:
+  #     - linux
+  #   goarch:
+  #     - amd64
+  # - id: windows
+  #   main: ./cmd/demangle
+  #   binary: demangle
+  #   env:
+  #     - CGO_ENABLED=1
+  #   goos:
+  #     - windows
+  #   goarch:
+  #     - amd64
+universal_binaries:
+  - id: darwin
+    replace: true
+    name_template: "demangle"
+archives:
+  - replacements:
+      darwin: macOS
+      ios: iOS
+      amd64: x86_64
+      all: universal
+    name_template: "demangle_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - completions/*
+checksum:
+  name_template: "checksums.darwin.txt"
+  disable: false
+signs:
+  - artifacts: checksum
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+brews:
+  - name: demangle
+    tap:
+      owner: blacktop
+      name: homebrew-tap
+    folder: Formula
+    homepage: "https://github.com/blacktop/arm64-cgo"
+    description: "MachO ARMv9-a demangleembler"
+    dependencies:
+      - name: bat
+        type: optional
+    install: |
+      bin.install "demangle"
+      bash_completion.install "completions/_bash" => "demangle"
+      zsh_completion.install "completions/_zsh" => "_demangle"
+      fish_completion.install "completions/_fish" => "demangle.fish"
+    test: |
+      system "#{bin}/demangle --version"
+changelog:
+  sort: asc
+  use: github
+  groups:
+    - title: 'New Features'
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 100
+    - title: 'Bug fixes'
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 200
+    - title: Dependency updates
+      regexp: "^.*chore\\(deps\\)*:+.*$"
+      order: 300
+    - title: 'Documentation updates'
+      regexp: "^.*docs[(\\w)]*:+.*$"
+      order: 400
+    - title: Other work
+      order: 9999
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^bumping"
+      - "^Update"
+      - "reorg"
+      - "updates"
+      - Merge pull request
+      - Merge branch
+release:
+  footer: |
+    ### Summary
+    **Full Changelog**: https://github.com/blacktop/cgo-swift-demangle/compare/{{ .PreviousTag }}...{{ .Tag }}
+    ## What to do next?
+    - Follow us on [Twitter](https://twitter.com/blacktop__);

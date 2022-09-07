@@ -1,3 +1,16 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
 # Prerequisites
 *.d
 
@@ -30,3 +43,13 @@
 *.exe
 *.out
 *.app
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+.vscode
+dist/
+demangle.*
+cmd/demangle/__debug_bin
+completions/
+swift-source/
