@@ -1,6 +1,6 @@
 # swift-demangle-cgo
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/blacktop/swift-demangle-cgo/Go)
+[![Go](https://github.com/blacktop/swift-demangle-cgo/actions/workflows/go.yml/badge.svg)](https://github.com/blacktop/swift-demangle-cgo/actions/workflows/go.yml)
 ![GitHub all releases](https://img.shields.io/github/downloads/blacktop/swift-demangle-cgo/total)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/blacktop/swift-demangle-cgo)](https://github.com/blacktop/swift-demangle-cgo/releases/latest)
 [![PkgGoDev](https://pkg.go.dev/badge/blacktop/swift-demangle-cgo)](https://pkg.go.dev/github.com/blacktop/swift-demangle-cgo/disassemble)
