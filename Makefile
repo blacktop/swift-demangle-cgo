@@ -1,6 +1,6 @@
 REPO=blacktop
-NAME=cgo-swift-demangle
-CLI=github.com/blacktop/cgo-swift-demangle/cmd/demangle
+NAME=swift-demangle-cgo
+CLI=github.com/blacktop/swift-demangle-cgo/cmd/demangle
 CUR_VERSION=$(shell svu current)
 NEXT_VERSION=$(shell svu patch)
 SWIFT_VERSION=5.6.3-RELEASE

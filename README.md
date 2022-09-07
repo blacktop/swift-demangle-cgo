@@ -1,17 +1,17 @@
-# cgo-swift-demangle
+# swift-demangle-cgo
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/blacktop/cgo-swift-demangle/Go)
-![GitHub all releases](https://img.shields.io/github/downloads/blacktop/cgo-swift-demangle/total)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/blacktop/cgo-swift-demangle)](https://github.com/blacktop/cgo-swift-demangle/releases/latest)
-[![PkgGoDev](https://pkg.go.dev/badge/blacktop/cgo-swift-demangle)](https://pkg.go.dev/github.com/blacktop/cgo-swift-demangle/disassemble)
-![GitHub](https://img.shields.io/github/license/blacktop/cgo-swift-demangle?color=blue)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/blacktop/swift-demangle-cgo/Go)
+![GitHub all releases](https://img.shields.io/github/downloads/blacktop/swift-demangle-cgo/total)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/blacktop/swift-demangle-cgo)](https://github.com/blacktop/swift-demangle-cgo/releases/latest)
+[![PkgGoDev](https://pkg.go.dev/badge/blacktop/swift-demangle-cgo)](https://pkg.go.dev/github.com/blacktop/swift-demangle-cgo/disassemble)
+![GitHub](https://img.shields.io/github/license/blacktop/swift-demangle-cgo?color=blue)
 
 > Golang bindings for the Swift Demangler.
 
 ## Getting Started
 
 ```bash
-go get github.com/blacktop/cgo-swift-demangle
+go get github.com/blacktop/swift-demangle-cgo
 ```
 
 ## License

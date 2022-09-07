@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/blacktop/cgo-swift-demangle/cmd"
+import "github.com/blacktop/swift-demangle-cgo/cmd"
 
 func main() {
 	cmd.Execute()
