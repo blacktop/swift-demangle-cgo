@@ -17,4 +17,5 @@ go get github.com/blacktop/swift-demangle-cgo
 ## License
 
 MIT Copyright (c) 2022 blacktop
+
 Apache License, Version 2.0 Copyright (c) 2014 - 2017 Apple Inc. and the Swift project authors
