@@ -49,7 +49,6 @@
 
 .vscode
 dist/
-demangle.*
 cmd/demangle/__debug_bin
 completions/
 swift-source/

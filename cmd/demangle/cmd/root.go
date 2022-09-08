@@ -22,28 +22,12 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/blacktop/swift-demangle-cgo/demangle"
 	"github.com/spf13/cobra"
 )
-
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use:   "demangle",
-	Short: "Demangle Swift symbol",
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
-}
-
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
-}
 
 func init() {
 	// Here you will define your flags and configuration settings.
@@ -55,4 +39,26 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+// rootCmd represents the base command when called without any subcommands
+var rootCmd = &cobra.Command{
+	Use:   "demangle",
+	Short: "Demangle Swift symbol",
+	Run: func(cmd *cobra.Command, args []string) {
+		out, err := demangle.Demangle(args[0])
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(out)
+	},
+}
+
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	err := rootCmd.Execute()
+	if err != nil {
+		os.Exit(1)
+	}
 }
