@@ -14,7 +14,8 @@ build-deps: ## Install the build dependencies
 .PHONY: build
 build: ## Build demangle locally
 	@echo " > Building locally"
-	CGO_ENABLED=1 go build -o demangle.${CUR_VERSION} ./cmd/demangle
+	# CGO_ENABLED=1 go build -o demangle.${CUR_VERSION} ./cmd/demangle
+	CGO_ENABLED=1 CC="zig c++ -target aarch64-macos" CXX="zig c++ -target aarch64-macos" go build -o demangle.${CUR_VERSION} ./cmd/demangle
 
 .PHONY: update
 update: ## Update vendored source code

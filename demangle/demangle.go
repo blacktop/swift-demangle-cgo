@@ -4,6 +4,8 @@ package demangle
 
 /*
 #cgo CFLAGS: -I${SRCDIR}/include
+#cgo CPPFLAGS: -I/opt/homebrew/Cellar/zig/0.9.1_1/lib/zig/libcxx/include
+#cgo LDFLAGS: -L${SRCDIR}/lib
 
 #include <stdlib.h>
 
@@ -57,7 +59,7 @@ const (
 )
 
 func Demangle(symbol string) (string, error) {
-	var results *[1024]byte
+	results := make([]byte, 1024)
 	if rc := C.symbolic_demangle_swift(
 		(*C.char)(unsafe.Pointer(symbol)),  // const char *symbol
 		(*C.char)(unsafe.Pointer(results)), // char *buffer
